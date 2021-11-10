@@ -1,0 +1,267 @@
+블로깅 하고 싶은 사람을 위한 사이트   https://jamstack.org/generators/ or ghost js https://sujinlee.me/ 
+    wordpress https://www.thewordcracker.com/basic/how-to-start-wordpress/
+
+만능 열쇠는 없다 https://ko.wikipedia.org/wiki/%EC%9D%80%EB%B9%9B_%EC%B4%9D%EC%95%8C%EC%9D%80_%EC%97%86%EB%8B%A4
+
+
+
+# 함수                               - 함수를 불러주는 마법의 도구()
+
+1. 왜 쓰지? 코드 중복하다보면 버그발생 가능성이 높아짐, 관리의 편의성 높여줌
+
+2. 구성요소
+    - 함수명(function name): 각 함수를 구별하는 식별자 - 1개
+    - 매개변수(parameters): 함수 실행에 필요한 값들 - 0개 이상
+    - 반환값(return value): 함수 실행에 대한 결과(보고하는 값) - 1개
+        함수의 반환값은 1개만 지원됩니다. but list/tuple/set(집합)/dict 등을 활용하면 1개의 값을 반환하지만 다수의 값을 반환한 듯한 효과 O
+        list = [1, 2, 3]
+        tuple = (1, 2, 3)
+        set = {1, 2, 3}
+        dict = {"a":1, "b":2, "c":3}
+
+
+3. 함수 인자의 2가지 유형
+    - 위치에 기반한 인자: Positional Arguments 인덱스로 각 인자를 구분 
+    - 이름에 기반한 인자: Keyword Arguments    키워드로 각 인자를 구분
+        
+        def 봉급계산(기본급, 야근시간):
+            return 기본급 + 야근시간 * 8000
+
+        봉급계산(800000, 20)  <-  위치인자(순서를 바꾸면 대참사!)
+
+        봉급계산(기본급=800000, 야근시간=20)  <- 이름인자(순서를 바꿔도 됨)
+
+        봉급계산(800000, 야근시간=20)  <- 위치인자는 이름인자보다 항상 먼저 와야함
+
+    - 디폴트 인자: 디폴트 값이 지정된 인자는 함수 호출시에 인자를 지정하지 않는다면 디폴트 값이 할당됨
+
+        def 봉급계산(기본급, 야근시간=0):
+            return 기본급 + 야근시간 * 8000
+
+                In [3]: def 봉급계산(기본급, 야근시간):
+                ...:     return 기본급 + 야근시간 * 10000
+                ...:
+                ...:
+
+                In [4]: 봉급계산(1000000, 10)
+                Out[4]: 1100000
+
+                In [5]: def 봉급계산(기본급, 야근시간=0):
+                ...:     return 기본급 + 야근시간 * 10000
+             
+
+                In [6]: 봉급계산(1000000)
+                Out[6]: 1000000
+
+4. 익명함수(Anonymous function): python에서 많이 사용하지는 않음, 간단한 계산식 할 때는 이렇게 사용함, java에서 많이 씀
+        In [14]: def mysum(x, y):
+        ...:     return x + y +10
+        ...:
+
+        In [15]: mysum
+        Out[15]: <function __main__.mysum(x, y)>
+
+        In [16]: lambda x, y: x + y + 10                     <- 익명함수
+        Out[16]: <function __main__.<lambda>(x, y)>
+    
+        In [17]: (lambda x, y: x + y + 10)(1, 2)
+        Out[17]: 13
+
+        In [18]: mysum = (lambda x, y: x + y + 10)         <- 이름 지정 가능
+
+        In [19]: mysum(1, 2)
+        Out[19]: 13
+
+
+5. 다양한 빌트인 함수
+    print
+    range
+    int, float, str, list, tuple, set, dict
+    abs, min, max, 
+
+
+
+<<<연습문제>>>
+def get_word_count(s):
+    return len(s.split())
+
+
+def get_ch_count_except_space(s):
+    count = 0
+    for ch in s:
+        if ch != " ":
+            count += 1
+    return count
+
+
+def get_rounded_nunber(number):
+    return (number // 1000) * 1000
+
+
+
+<<<자동화 테스트 - pytest>>>
+pip install pytest
+
+파일명은 test_main01.py
+
+from main01 import get_word_count, get_ch_count_except_space
+
+def test_get_word_count():
+    assert get_word_count("우리는 파이썬을 즐겨요") == 3
+    assert get_word_count("Python Family") == 2
+
+
+def test_get_ch_count_except_space():
+    assert get_ch_count_except_space("우리는 파이썬을 즐겨요") == 10
+
+
+
+
+VS에서 pytest
+
+
+
+
+import pytest
+from main01 import get_word_count, get_ch_count_except_space, get_rounded_number
+
+@pytest.mark.parametrize(
+    "sentence, expected",
+    [
+        ("우리는 파이썬을 즐겨요", 3),
+        ("Python Family", 2),
+    ],
+)
+def test_get_word_count(sentence, expected):
+    assert get_word_count(sentence) == expected
+
+
+def test_get_ch_count_except_space():
+    assert get_ch_count_except_space("우리는 파이썬을 즐겨요") == 10
+    assert get_ch_count_except_space("Python Family") == 12
+
+
+def test_get_rounded_number():
+    assert get_rounded_number(1234567) == 1234000
+    assert get_rounded_number(1234) == 1000
+
+
+
+
+
+extension > test > test explorer UI
+pytest 선택
+
+
+
+#문자열과 인덱스
+
+
+? 음수 인덱스를 지원
+In [1]: s = "abcdef"
+
+In [3]: s[0]
+Out[3]: 'a'
+
+In [4]: s[5]
+Out[4]: 'f'
+
+In [5]: s[-1]     #파이썬은 len(s)를 뺀 것
+Out[5]: 'f'
+
+In [6]: s[len(s) - 1]
+Out[6]: 'f'
+
+
+
+?슬라이싱: 시작을 지정 안하면 제일 처음, 끝 지정 안 하면 제일 마지막, step 지정 안하면 1
+In [7]: s = "abcdefghijklmnopqrstuvwxyz"
+
+In [10]: s[0:3]
+Out[10]: 'abc'
+
+In [11]: s[0:10:1]
+Out[11]: 'abcdefghij'
+
+In [12]: s[0:10:2]
+Out[12]: 'acegi'
+
+In [13]: s[0:10:5]
+Out[13]: 'af'
+
+In [14]: s[1::]
+Out[14]: 'bcdefghijklmnopqrstuvwxyz'
+
+In [15]: s[1:]
+Out[15]: 'bcdefghijklmnopqrstuvwxyz'
+
+In [16]: s[1:-2]
+Out[16]: 'bcdefghijklmnopqrstuvwx'
+
+In [17]: s[1:-1]
+Out[17]: 'bcdefghijklmnopqrstuvwxy'
+
+In [18]: s[::-1]
+Out[18]: 'zyxwvutsrqponmlkjihgfedcba'
+
+
+
+
+# 필수 자료구조
+1. 자료구조(Data Structures)
+    - list, tuple, set, dict.etc.
+
+2. 시퀀스: 순서를 가지는 성격
+    - 단일자료형 지원여부에 따른 분류
+        + 컨테이너 시퀀스: 서로 다른 자료형의 항목을 담을 수 있음(eg. list, tuple)
+        + 균일 시퀀스: 하나만(eg. str)
+    
+3. 리스트: 기차와 같음, 거기에 다른 칸을 추가하고 뺄 수 있음
+    In [19]: names = ["Steve", "John"]
+
+    In [20]: type(names)
+    Out[20]: list
+
+    In [21]: names.append("Tom")
+
+    In [22]: names
+    Out[22]: ['Steve', 'John', 'Tom']
+
+    In [23]: print(names)
+    ['Steve', 'John', 'Tom']
+
+    In [24]: names.insert(1, "Jane")
+
+    In [25]: names
+    Out[25]: ['Steve', 'Jane', 'John', 'Tom']
+
+
+    ?연습문제
+        In [1]: 메뉴10 = [f"메뉴{i}" for i in range(1, 11)]
+
+        In [2]: 메뉴10[1]
+        Out[2]: '메뉴2'
+
+        In [3]: 메뉴10[3 : 3 + 4]
+        Out[3]: ['메뉴4', '메뉴5', '메뉴6', '메뉴7']
+
+        In [4]: 메뉴10[-3:]
+        Out[4]: ['메뉴8', '메뉴9', '메뉴10']
+
+        In [5]: 메뉴10[::-1]
+        Out[5]: ['메뉴10', '메뉴9', '메뉴8', '메뉴7', '메뉴6', '메뉴5', '메뉴4', '메뉴3', '메뉴2', '메뉴1']
+
+
+    - 리스트의 값을 여러 변수에 나눠 저장하기(unpack)
+        가수1, 가수2, 가수3, 가수4 = items[:4]
+    
+    - 리스트를 언제 쓰면 좋나? 순서를 갖춰 여러 개의 값을 관리하고 싶을 때
+
+4. 사전(dict): 다수의 "Key:Value"쌍을 저장할 수 있는 자료구조
+    - 특징: 
+        저장된 순서를 보장하지 않음
+
+    - del
+    - TOP3_노래_좋아요_사전.update
+
+    

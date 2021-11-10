@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{%block body%}
+<h1>박예린의 프로필</h1>
+<h2>좋아하는 음식</h2>
+<!--  ul>li*4 -->
+<ul>
+    {% for food in like_foods %}
+    <li>{{ food }}</li>
+    {% endfor %}
+</ul>
+<hr />
+&copy; 2021. 박예린 컴퍼니.
+{%endblock%}

@@ -1,0 +1,67 @@
+# 웹
+
+1. HTML, CSS, java
+2. front end, back end
+3. 문서 성격의 페이지를 먼저 만들 예정, 
+    개발할 때는 무조건 CHROME: 이 동네의 미친 놈, 가장 빠름
+    firefox 랑 chrome 제일 많이 씀
+
+4. 웹문서 간단하게 만들어봄 / html, css 먼저 배우고 java는 좀 나중에 배울 예정
+
+5. 기반이 되는 것을 미리 만들어놓은 라이브러리 많음, 파이썬에는 장고가 있음
+    wev frameworks
+    java: spring
+    phthon: django, flask, fastAPI
+    ruby: ruby on rails
+    php: code igniter
+    javaScript: expressJS
+
+6. flask01 
+    set FLASK_APP=hello   # 띄어쓰기X, 환경변수
+    flask run --host=0.0.0.0 --reload
+
+    숫자: ip주소
+    문자: 도메인-사야함
+
+7. ngrok / localtunnel 로컬에서 웹서버 만들고 데모할 때 쓰는 용도
+    ngrok http 5000
+    flask 명령에 --reload 
+
+8. render_templates 
+    html은 그걸로 볼 수 있게 파일 따로 만들고 파이썬에서 로드하기 
+
+9. development 환경 
+    set FLASK_ENV=development
+
+10. jinja
+    중복되는 건 없애야 해
+    base.html , post_list.html
+
+11. 방금은 하드코딩했지만 이런 정보들을 DB에 저장해놓을 수 있음, DB 하나만 파서 잘 쓰면 됨
+    Oracle, MS SQL(SQL server)
+    MySQL, MariaDB = 둘 다 같은 사람이 만듦
+    PostgrSQL = 가장 오래된 DB 
+    SQLite3
+
+
+12. Pillow 라이브러리로 이미지 썸네일 처리하기# pip install pillow
+
+    from PIL import Image
+
+    im = Image.open("static/cat.jpg")
+    im.thumbnail((800, 600))
+    im.save("static/cat.jpg")
+
+    python image_thumb.python
+
+
+    - image formats
+        jpg / jpeg : 손실압축, 손실률
+        gif
+        png
+        bmp : bitmap
+        *.ai
+
+        tiff : 디카
+
+13. 책에는 정말 기본만 있음, 화려한 것은 유튜브에 들어가서 1시간 코딩 따라하면서 연습하기, 모방이 중요

@@ -1,0 +1,203 @@
+파이썬은 전세계적으로 많이 쓰이고 있음
+https://drive.google.com/drive/folders/1jCR26_MX8TTYt1RAZ8gopL7AdzcbO6Jm?usp=sharing   ppt 주소
+https://www.youtube.com/results?search_query=pycon+kr  pycon korea
+우리는 소프트웨어 개발자로 사용할 예정이다
+파이썬은 대개의 경우, 효율적인 선택이다
+    웹서비스 개발, 챗봇 개발
+        웹서비스 개발은 백엔드 만으로 할 수 없다. 프론트엔드가 꼭 필요하다
+    데이터분석
+    머신러닝/인공지능
+    여러분이 상상하는 모든 것들을 할 수 있다
+
+우리가 사용하는 파이썬은 CPython 이다.
+
+
+In [4]: sum([1, 2, 3])
+Out[4]: 6
+
+In [5]: def calc_sum(max_number):
+   ...:     sum = 0
+   ...:     for i in range(max_number+1):
+   ...:         sum += i
+   ...:     return sum
+   ...:
+
+In [6]: calc_sum(10)
+Out[6]: 55
+
+In [7]: sum
+Out[7]: <function sum(iterable, /, start=0)>
+
+In [8]: sum = 0
+
+In [9]: sum([1, 2, 3])
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-9-5b30f1e835bd> in <module>
+----> 1 sum([1, 2, 3])
+
+TypeError: 'int' object is not callable
+
+In [10]: del sum                 # del == 삭제
+
+In [11]: sum([1, 2, 3])
+Out[11]: 6
+
+변수/함수 네이밍은 CamelCase < snake_case
+클래스 네이밍은 CamelCase 방식을 선호
+
+
+In [12]: lyrics = "그대여 사무치는 새벽에 지지 마오, 우리 손 잡고 걸
+    ...: 어가면 되오."
+
+In [13]: lyrics = """그대여 사무치는 새벽에 지지 마오, 우리 손 잡고
+    ...: 걸어가면 되오."""
+
+In [14]: lyrics
+Out[14]: '그대여 사무치는 새벽에 지지 마오, 우리 손 잡고 걸어가면 되오.'
+
+In [15]: lyrics = """그대여 사무치는 새벽에 지지 마오, 우리 손 잡고
+    ...: 걸어가면 되오."""
+
+In [16]: lyrics = """그대여 사무치는 새벽에 지지 마오, 우리 손 잡고
+    ...: 걸어가면 되오."""
+
+In [17]: lyrics2 = """야야야야야
+    ...: 어어어어어
+    ...: 유유유유유
+    ...: 이이이이이"""
+
+In [18]:
+
+In [18]: lyrics2
+Out[18]: '야야야야야\n어어어어어\n유유유유유\n이이이이이'
+
+In [19]: print(lyrics2)
+야야야야야
+어어어어어
+유유유유유
+이이이이이
+
+In [20]: name = "Park YeRin"
+
+In [21]: region = "DaeJeon"
+
+In [22]: message = "hello, %s in %s" % (name, region)
+
+In [23]: message
+Out[23]: 'hello, Park YeRin in DaeJeon'
+
+In [24]: message = "hello. {} in {}".format(name, region)
+
+In [25]: message
+Out[25]: 'hello. Park YeRin in DaeJeon'
+
+In [26]: message = "hello. {0} in {1}".format(name, region)
+
+In [27]: message
+Out[27]: 'hello. Park YeRin in DaeJeon'
+
+In [28]: message = "hello. {이름} in {지역}".format(이름 = name, 지역
+    ...:  = region)
+
+In [29]: message
+Out[29]: 'hello. Park YeRin in DaeJeon'
+
+In [30]: message = "안녕하세요. {}님, {}에 사시네요. 반가워요 {}님".f
+    ...: ormat(name, region)
+----------------------------------------------------------------------
+IndexError                           Traceback (most recent call last)
+<ipython-input-30-b8783cd1d540> in <module>
+----> 1 message = "안녕하세요. {}님, {}에 사시네요. 반가워요 {}님".format(name, region)
+
+IndexError: Replacement index 2 out of range for positional args tuple
+
+In [31]: message = "안녕하세요. {}님, {}에 사시네요. 반가워요 {}님".f
+    ...: ormat(name, region, name)
+
+In [32]: message
+Out[32]: '안녕하세요. Park YeRin님, DaeJeon에 사시네요. 반가워요 Park YeRin님'
+
+In [33]: message = "안녕하세요. {}님, {}에 사시네요. 반가워요 {0}님".
+    ...: format(name, region)
+----------------------------------------------------------------------
+ValueError                           Traceback (most recent call last)
+<ipython-input-33-e31ab647a940> in <module>
+----> 1 message = "안녕하세요. {}님, {}에 사시네요. 반가워요 {0}님".format(name, region)
+
+ValueError: cannot switch from automatic field numbering to manual field specification
+
+In [34]: message = "안녕하세요. {0}님, {1}에 사시네요. 반가워요 {0}님
+    ...: ".format(name, region)
+
+In [35]: message
+Out[35]: '안녕하세요. Park YeRin님, DaeJeon에 사시네요. 반가워요 Park YeRin님'
+
+In [36]: message = "안녕하세요. {이름}님, {지역}에 사시네요. 반가워요
+    ...:  {이름}님".format(이름 = name, 지역 = region)
+
+In [37]: message
+Out[37]: '안녕하세요. Park YeRin님, DaeJeon에 사시네요. 반가워요 Park YeRin님'
+
+
+In [38]: bool(0)
+Out[38]: False
+
+In [39]: bool(-1)
+Out[39]: True
+
+In [40]: bool('')
+Out[40]: False
+
+In [41]: bool('alsk")
+  File "<ipython-input-41-e741d42a520f>", line 1
+    bool('alsk")
+         ^
+SyntaxError: unterminated string literal (detected at line 1)
+
+
+In [42]: bool("a")
+Out[42]: True
+
+In [43]: bool(" ")
+Out[43]: True
+
+
+#논리 연산자
+&& and        파이썬은 and, or 씀
+|| or
+
+참 and 참 => 참
+참 and 거짓 => 거짓
+거짓 and 참 => 거짓
+거짓 and 거짓 => 거짓
+
+참 or 참     => 참
+참 or 거짓   => 참
+거짓 or 참   => 참
+거짓 or 거짓  => 거짓
+
+
+
+# NameError - 딱 2가지
+    1. 정의되지 않은 변수에 접근했을 때
+    2. 오타
+
+
+소스코드편집기보다 기능이 훨씬 많은 IDE통합 개발 환경(統合開發環境, Integrated Development Environment)
+https://ko.wikipedia.org/wiki/통합_개발_환경
+
+
+
+# 조건문
+if
+elif(else if)
+else
+
+# range
+(start, end, step)
+
+# for
+효율적인 코드로 만들기
+for i in range(2, 11, 2):
+    print(i)
