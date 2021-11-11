@@ -1,0 +1,41 @@
+tip) 영타를 최소 3~4배 이상 올린다고 생각하고 연습을 했으면 좋겠다
+    영타 하루 3시간 연습하기
+    내가 무엇을 만들고 싶은지 고민해봤으면 좋겠다
+
+1. github
+
+    git remote add github git@github.com:get-py/devops_cloud.git(ssh, 한번만 하면 됨)
+    git remote -v
+
+
+    github에서 인기기능: fork
+
+2. Heroku
+    1) 여러분들의 devops_cloud_heroku를 로컬에 clone하세요
+        cd \
+        git clone 주소 # devops_cloud_heroku 폴더가 생성이 됩니다. 
+        cd devops_cloud_heroku
+
+        git clone git@github.com:get-py/devops_cloud_heroku.git
+        cd devops_cloud_heroku
+        dir
+
+    2) git log 명령으로 커밋 로그를 살펴봅니다
+        git log
+
+    3) 제 저장소 주소를 새로운 remote로 등록
+        git remote add allieus  git@github.com:allieus/devops_cloud_heroku.git
+        git remote -v
+
+    4) 제 저장소의 커밋내역을 당겨옵니다
+        git pull allieus main 
+
+    5) 여러분의 각자의 저장소로 커밋내역을 올립니다.
+	    git push origin main
+
+    6) cmd에서
+        set FLASK_ENV=development
+        flask run --host=0.0.0.0 --reload
+
+3. 텔레그램 bot
+    토큰: 2140322362:AAEpfsFTo-t8TXW_AdWBQeeV5tSB6TyHvVY
