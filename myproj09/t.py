@@ -26,24 +26,41 @@ def start(update, context):
 def echo(update, context):
     received_text: str = update.message.text
 
-    if tasks.ya.check_available(received_text):
-        response_text = tasks.ya.make_response(received_text)
+    supported_tasks = [
+        tasks.ya,
+        tasks.dice,
+        tasks.naver_search,
+        tasks.reverse,
+        tasks.get_current_lotto_numbers,
+        tasks.numbers_add,
+    ]
 
-    elif tasks.dice.check_available(received_text):
-        response_text = tasks.dice.make_response(received_text)
+    for task in supported_tasks:
+        if task.check_available(received_text):
+            response_text = task.make_response(received_text)
+            break
+    else:
+        response_text = "지원하지 않는 명령입니다"
 
-    elif tasks.naver_search.check_available(received_text):
-        response_text = tasks.naver_search.make_response(received_text)
+    # if tasks.ya.check_available(received_text):
+    #     response_text = tasks.ya.make_response(received_text)
+    #
+    # elif tasks.dice.check_available(received_text):
+    #     response_text = tasks.dice.make_response(received_text)
+    #
+    # elif tasks.naver_search.check_available(received_text):
+    #     response_text = tasks.naver_search.make_response(received_text)
 
-
+    #더하기: 2, 3, 4
 
     # elif tasks.reverse.check_available(received_text):
     #     response_text = tasks.reverse.make_response(received_text)
     # elif tasks.multiply.check_available(received_text):
     #     response_text = tasks.multiply.make_response(received_text)
 
-    else:
-        response_text = "지원하지 않는 명령입니다"
+
+
+
 
     context.bot.send_message(
         chat_id=update.effective_chat.id,
@@ -65,6 +82,7 @@ def echo(update, context):
 
 
 
+
 start_handler = CommandHandler("start", start)
 dispatcher.add_handler(start_handler)
 
@@ -74,7 +92,7 @@ echo_handler = MessageHandler(
 dispatcher.add_handler(echo_handler)
 
 updater.start_polling()
-
+updater.idle()
 
 # bot = telegram.Bot(token)
 #
