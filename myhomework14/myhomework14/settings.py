@@ -37,10 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'catube',
 ]
 
 if DEBUG:
-    INSTALLED_APPS =+ [
+    INSTALLED_APPS += [
         'debug_toolbar',
     ]
 
