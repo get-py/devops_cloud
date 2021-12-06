@@ -37,10 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # local
+    'ReadingNote',
 ]
 
 if DEBUG:
-    INSTALLED_APPS =+ [
+    INSTALLED_APPS += [
         'debug_toolbar'
     ]
 
