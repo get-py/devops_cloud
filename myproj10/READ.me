@@ -1,0 +1,47 @@
+tip) 오류없이 수행되었다고 해서 쓸 수 있는 것 아님, 반복연습 해야함
+
+1. 텔레그램 봇 과제
+
+
+    1) 정규 표현식
+        - 거의 모든 프로그래밍 언어에서 지원
+        - 문자열의 패턴, 규칙, Rule을 정의하는 방법
+            eg) 휴대폰 번호
+                "01[016789][123456789]\d\d\d\d\d\d\d"
+                "01[016-9][1-9]\d\d\d\d\d\d\d"
+                "01[016-9][1-9]\d{7}"
+                "01[016-9]-{0,1}[1-9]\d{7}" #-이 0회 이상 1회 이하, 띄어쓰기 ㄴㄴ
+                "01[016-9]-?[1-9]\d{7}"
+                "01[016-9]-?[1-9]\d{2,3}-?\d{4}"
+
+                ?
+                [123]
+                [1,2,3]
+                "[1,2,3]"
+                "[123]"
+
+    2) 로또번호(predict_lotto_numbers)
+        import random
+        from typing import List
+
+        def check_available(received_text: str) -> bool:
+            return received_text in ("로또", "로또번호 점지해줘")
+
+        def make_response(received_text: str, candidate_numbers: List[int] = None) -> str:
+            if candidate_numbers is None:
+                candidate_numbers = random.sample(range(1, 46), 7)
+            *numbers, bonus = random.sample(range(1,46), 7)
+            predict_numbers = ", ".join(map(str, sorted(numbers)))
+            message = f"로또번호는 {predict_numbers}이며, 보너스 번호는 {bonus}입니다."
+            return message
+
+
+
+        import random
+
+        a, b, c, d, e, f, g = random.sample(range(1,46), 7)  # random.sample? - ipython 지원기능, 공식문서를 보여줌
+        *numbers, bonus = random.sample(range(1,46), 7)
+
+        numbers.sort()
+
+        ", ".join([0, 1, 2]) - error

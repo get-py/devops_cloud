@@ -11,13 +11,15 @@ conn = pymysql.connect(
 # 커서
 cur = conn.cursor()
 sql = ""
-# userTBL의 회원 데이터 Insert
-# userID, name, birthYear, addr
 
+# userTBL 회원 데이터 INSERT
 userID = ""
 name = ""
 birthYear = ""
 addr = ""
+mobile1 = ""
+mobile2 = ""
+height = ""
 
 while True:
     userID = input("사용자 ID ==> ")
@@ -26,9 +28,12 @@ while True:
     name = input("사용자 이름 ==> ")
     birthYear = input("사용자 출생년도 ==> ")
     addr = input("사용자 주소 ==> ")
+    mobile1 = input("휴대폰 앞자리 ==> ")
+    mobile2 = input("휴대폰 뒤 8자리 ==> ")
+    height = input("사용자 신장 ==> ")
 
     sql = (
-        "INSERT INTO userTBL (userID, name, birthYear, addr, mDate) VALUES "
+        "INSERT INTO userTBL (userID, name, birthYear, addr, mobile1, mobile2, height, mDate) VALUES"
         "('"
         + userID
         + "', '"
@@ -37,13 +42,16 @@ while True:
         + birthYear
         + ", '"
         + addr
-        + "', CURDATE())"  # 큰 따옴표 안에는 작은 따옴표 안 들어감, + 문자열 만드는 형식
+        + "', '"
+        + mobile1
+        + "', '"
+        + mobile2
+        + "', "
+        + height
+        + ", CURDATE())"
     )
     print(sql)
     cur.execute(sql)
 
 conn.commit()
 conn.close()
-
-
-# NULL 없이 모든 컬럼의 데이터 INSERT - userTBl

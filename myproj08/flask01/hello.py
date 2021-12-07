@@ -8,7 +8,7 @@ def index():
     return render_template("index.html")
 
 
-"""in cmd
+"""in CMD
 > set FLASK_APP=hello
 > flask run
 """
@@ -21,7 +21,7 @@ def profile():
         "민초",
         "마라탕",
         "버블티",
-        "슈바인하겐",
+        "슈바인학센",
         "갈릭버터새우",
     ]
     return render_template("profile.html", like_foods=like_foods)
