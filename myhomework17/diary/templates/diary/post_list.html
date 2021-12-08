@@ -1,0 +1,7 @@
+{% extends 'diary/layout.html' %}
+
+{% block content %}
+    {% for post in post_list %}
+        {{ post.title }}
+    {% endfor %}
+{% endblock %}
