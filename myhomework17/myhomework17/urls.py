@@ -5,6 +5,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('diary/', include('diary.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,
@@ -12,5 +13,5 @@ urlpatterns += static(settings.MEDIA_URL,
 
 if settings.DEBUG:
     import debug_toolbar
-    urlpatterns += [path('__debug__/', include(debug_toolbar.urls)),
-    ]
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls))]
