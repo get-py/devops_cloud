@@ -1,3 +1,4 @@
+from django.core.validators import MinLengthValidator
 from django.db import models
 
 
@@ -10,11 +11,17 @@ class TimestampedModel(models.Model):
 
 
 class Post(TimestampedModel):
-    title = models.CharField(max_length=200, db_index=True)
+    title = models.CharField(
+        max_length=200,
+        db_index=True,
+        validators=[
+            MinLengthValidator(3),
+        ])
     author_name = models.CharField(max_length=20)
     content = models.TextField()
     photo = models.ImageField(upload_to='diary/post/%Y/%m/%d')
     tag_set = models.ManyToManyField('Tag', blank=True)  # 장고가 알아서 찾아줌
+    ip = models.GenericIPAddressField()
 
     def __str__(self) -> str:
         return self.title

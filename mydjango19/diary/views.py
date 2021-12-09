@@ -39,8 +39,9 @@ def post_new(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            print("유효성 검사에 통과했습니다. :", form.cleaned_data)
-            form.save()  # ModelForm 에서만 지원
+            post = form.save(commit=False)  # ModelForm 에서만 지원
+            post.ip = request.META['REMOTE_ADDR']
+            post.save()
             return redirect("diary:post_list")
     else:
         form = PostForm()
@@ -57,8 +58,7 @@ def post_edit(request: HttpRequest, pk:int) -> HttpResponse:
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
-            print("유효성 검사에 통과했습니다. :", form.cleaned_data)
-            form.save()  # ModelForm 에서만 지원
+            form.save()
             return redirect("diary:post_list")
     else:
         form = PostForm(instance=post)
