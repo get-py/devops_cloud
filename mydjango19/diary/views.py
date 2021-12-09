@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from diary.forms import PostForm
 from diary.models import Post
@@ -36,14 +36,36 @@ def post_detail(request: HttpRequest, pk: int) -> HttpResponse:
 
 
 def post_new(request: HttpRequest) -> HttpResponse:
-    form = PostForm()
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            print("유효성 검사에 통과했습니다. :", form.cleaned_data)
+            form.save()  # ModelForm 에서만 지원
+            return redirect("diary:post_list")
+    else:
+        form = PostForm()
+
     return render(request, "diary/post_form.html", {
         "form": form,
     })
 
 
+def post_edit(request: HttpRequest, pk:int) -> HttpResponse:
+    # 아래 코드는 ModelForm 에 한해서 동작하는 코드
+    post = Post.objects.get(pk=pk)
 
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            print("유효성 검사에 통과했습니다. :", form.cleaned_data)
+            form.save()  # ModelForm 에서만 지원
+            return redirect("diary:post_list")
+    else:
+        form = PostForm(instance=post)
 
+    return render(request, "diary/post_form.html", {
+        "form": form,
+    })
 
 
 
