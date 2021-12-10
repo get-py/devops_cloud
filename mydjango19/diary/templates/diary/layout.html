@@ -39,6 +39,14 @@
             <button type="button" class="btn btn-primary">Sign-up</button>
         </div>
     </header>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     {% block content %} {% endblock %}
 
     <hr/>
