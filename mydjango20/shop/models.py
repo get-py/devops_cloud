@@ -21,12 +21,31 @@ class Shop(TimestampedModel):
                                  help_text="입력 예시) 042-1234-1234")
     tag_set = models.ManyToManyField('Tag', blank=True)
 
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name = "가게"
+        verbose_name_plural = "가게 목록"
+
 
 class Review(TimestampedModel):
     shop = models.ForeignKey(Shop, on_delete=CASCADE)
     author_name = models.CharField(max_length=20)
     message = models.TextField()
 
+    class Meta:
+        verbose_name = "리뷰"
+        verbose_name_plural = "리뷰 목록"
+
 
 class Tag(TimestampedModel):
     name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name = "태그"
+        verbose_name_plural = "태그 목록"
+
