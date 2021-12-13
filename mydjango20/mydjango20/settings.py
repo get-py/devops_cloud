@@ -37,13 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap5',
     # local
     'shop',
 ]
 
 if DEBUG:
     INSTALLED_APPS += [
-        'debug_toolbar'
+        'debug_toolbar',
     ]
 
 MIDDLEWARE = [
