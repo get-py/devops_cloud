@@ -11,7 +11,18 @@ class TimestampedModel(models.Model):
         abstract = True
 
 
+class Category(TimestampedModel):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        ordering = ["-id"]
+
+
 class Shop(TimestampedModel):
+    category = models.ForeignKey(Category, on_delete=CASCADE)
     name = models.CharField(max_length=100, db_index=True)
     description = models.TextField(blank=True)
     telephone = models.CharField(max_length=14,
@@ -25,6 +36,7 @@ class Shop(TimestampedModel):
         return self.name
 
     class Meta:
+        ordering = ["-id"]
         verbose_name = "가게"
         verbose_name_plural = "가게 목록"
 
@@ -38,6 +50,9 @@ class Review(TimestampedModel):
         verbose_name = "리뷰"
         verbose_name_plural = "리뷰 목록"
 
+    class Meta:
+        ordering = ["-id"]
+
 
 class Tag(TimestampedModel):
     name = models.CharField(max_length=100, unique=True)
@@ -48,4 +63,4 @@ class Tag(TimestampedModel):
     class Meta:
         verbose_name = "태그"
         verbose_name_plural = "태그 목록"
-
+        ordering = ["name"]

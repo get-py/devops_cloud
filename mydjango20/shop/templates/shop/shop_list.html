@@ -1,7 +1,30 @@
 {% extends "shop/layout.html" %}
 
 {% block content %}
-    {% for shop in shop_list %}
-        {{ shop.name }}
-    {% endfor %}
-{% endblock %}
+    <h2>Shop List</h2>
+    <ul>
+        <li>전체</li>
+        {% for category in category_list %}
+            <li>
+                <a href="?category_id={{ category.pk }}">
+                    {{ category.name }}
+
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <form action="" method="get">
+        <input type="text"
+               name="query"
+               placeholder="검색어를 입력해주세요."
+               value="{{ request.GET.query }}"/>
+        <input type="submit" value="검색"/>
+    </form>
+    <ul>
+        {% for shop in shop_list %}
+            <li>
+                {{ shop.name }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}p
