@@ -6,7 +6,6 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from blog.forms import PostForm
 from blog.models import Post
 
-
 post_list = ListView.as_view(
     model=Post,
 )
@@ -15,22 +14,23 @@ post_detail = DetailView.as_view(
     model=Post,
 )
 
-post_new = CreateView.as_view(
-    model=Post,
-    form_class=PostForm,
-    success_url=reverse_lazy('blog:post_list'),
-)
+
+class PostCreatedView(CreateView):
+    model = Post
+    form_class = PostForm
+
+post_new = PostCreatedView.as_view()
 
 
-post_edit = UpdateView.as_view(
-    model=Post,
-    form_class=PostForm,
-    success_url=reverse_lazy('blog:post_list'),  # URL reverse 미지원
-)
+
+class PostUpdateView(UpdateView):
+    model = Post
+    form_class = PostForm
+
+post_edit = PostUpdateView.as_view()
 
 
 post_delete = DeleteView.as_view(
     model=Post,
     success_url=reverse_lazy('blog:post_list'),
 )
-

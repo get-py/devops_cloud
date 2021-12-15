@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import CASCADE
+from django.urls import reverse
 
 
 class TimestampedModel(models.Model):
@@ -38,6 +39,10 @@ class Post(TimestampedModel):
 
     def __str__(self):
         return self.title
+
+    #post detail 주소 문자열을 반환
+    def get_absolute_url(self) -> str:
+        return reverse("blog:post_detail", args=[self.pk])
 
     class Meta:
         ordering = ['-id']
