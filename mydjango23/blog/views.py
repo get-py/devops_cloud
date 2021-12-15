@@ -51,4 +51,12 @@ def post_edit(request: HttpRequest, pk: int) -> HttpResponse:
 
 
 def post_delete(request: HttpRequest, pk: int) -> HttpResponse:
-    raise NotImplementedError("삭제는 아직 강의에서 다루지 않았습니다.")
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        post.delete()  # 실제로 db에 delete 쿼리를 삭제
+        messages.success(request, f"#{pk} 포스팅을 삭제했습니다.")
+        return redirect("blog:post_list")
+
+    return render(request, 'blog/post_confirm_delete.html', {
+        'post': post,
+    })
