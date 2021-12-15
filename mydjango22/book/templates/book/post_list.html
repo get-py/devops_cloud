@@ -1,0 +1,11 @@
+{% extends "book/layout.html" %}
+
+{% block content %}
+    {% for post in post_list %}
+        <a href="{% url "book:post_detail" post.pk %}">{{ post.title }}</a>
+
+    {% endfor %}
+
+    <hr/>
+    <a href="{% url "book:post_new" %}">포스팅 쓰기</a>
+{% endblock %}

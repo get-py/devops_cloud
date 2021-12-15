@@ -1,11 +1,12 @@
 from django.contrib import admin
 
+from book.forms import PostForm, CommentForm
 from book.models import Post, Tag, Comment, Category
 
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    pass
+    form = PostForm
 
 
 @admin.register(Tag)
@@ -15,7 +16,7 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    pass
+    form = CommentForm
 
 
 @admin.register(Category)
