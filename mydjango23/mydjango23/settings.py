@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     # third
     'bootstrap5',
     # local
-
+    'blog',
 ]
 
 if DEBUG:
