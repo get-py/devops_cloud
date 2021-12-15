@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # third
+    'bootstrap5',
+    # local
+
 ]
 
 if DEBUG:
