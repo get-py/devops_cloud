@@ -1,3 +1,4 @@
+import tablib
 from django.db import models
 from django.db.models import CASCADE
 from django.urls import reverse
@@ -40,9 +41,25 @@ class Post(TimestampedModel):
     def __str__(self):
         return self.title
 
-    #post detail 주소 문자열을 반환
+    # post detail 주소 문자열을 반환
     def get_absolute_url(self) -> str:
         return reverse("blog:post_detail", args=[self.pk])
+
+    @classmethod
+    def get_tabular_data(cls, queryset, format="xlsx") -> bytes:
+        dataset = tablib.Dataset()
+        dataset.headers = ["id", "title", "created_at", "updated_at"]
+
+        for post in queryset:
+            dataset.append([
+                post.id,
+                post.title,
+                # tzinfo 가 있는 datetime 객체는 tablib에서 변환이 현재 지원되지 않아
+                # 문자열로 변환을 하겠습니다.
+                post.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+                post.updated_at.strftime("%Y-%m-%d %H:%M:%S"),
+            ])
+        return dataset.export(format)
 
     class Meta:
         ordering = ['-id']
@@ -67,4 +84,3 @@ class Tag(TimestampedModel):
 
     class Meta:
         ordering = ["name"]
-
