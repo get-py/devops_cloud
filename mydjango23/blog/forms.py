@@ -1,5 +1,7 @@
+import re
+
 from django import forms
-from blog.models import Post, Tag
+from blog.models import Post, Tag, Subscriber
 
 
 class PostForm(forms.ModelForm):
@@ -29,6 +31,17 @@ class PostForm(forms.ModelForm):
         self.instance.tag_set.clear()
         self.instance.tag_set.add(*tag_list)
 
+    def clean_content(self):
+        content = self.cleaned_data.get("content")
+        if content:
+            # script 태그를 제거
+            content = re.sub(
+                r'<script.*?>.*?</script>',
+                '',
+                content,
+                flags=re.I|re.S)
+        return content
+
     class Meta:
         model = Post
         fields = [
@@ -37,3 +50,17 @@ class PostForm(forms.ModelForm):
             'content',
             'photo',
         ]
+
+
+class SubscriberForm(forms.ModelForm):
+    class Meta:
+        model = Subscriber
+        fields = "__all__"
+
+    # form 만의 유효성 검사 + 데이터 변환기능 제공
+    def clean_phone(self):
+        phone = self.cleaned_data.get("phone")
+        if phone:
+            if not phone.startswith("010"):
+                raise forms.ValidationError("010으로 시작하도록 입력해주세요.")
+        return phone.replace("-", "")

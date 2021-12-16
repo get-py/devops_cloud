@@ -6,7 +6,8 @@ from blog.views import fbv as views
 
 app_name = "blog"
 
-urlpatterns =[
+urlpatterns = [
+    path('subscriber/new/', views.subscriber_new, name="subscriber_new"),
     path('', views.post_list, name="post_list"),
     path('<int:pk>/', views.post_detail, name="post_detail"),
     path('new/', views.post_new, name='post_new'),
