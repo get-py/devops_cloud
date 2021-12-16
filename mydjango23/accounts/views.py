@@ -7,6 +7,8 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from PIL import Image
 
+from accounts.forms import LoginForm, SignupForm
+
 
 def profile_image(request: HttpRequest) -> HttpResponse:
     canvas = Image.new("RGBA", (256, 256), (50, 100, 150, 255))
@@ -18,6 +20,7 @@ def profile_image(request: HttpRequest) -> HttpResponse:
 
 
 login = LoginView.as_view(
+    form_class=LoginForm,
     template_name="accounts/login_form.html",
 )
 
@@ -25,12 +28,12 @@ login = LoginView.as_view(
 # 새로운 User 인스턴스 만드는 것
 def signup(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST, request.FILES)
+        form = SignupForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect("accounts:login")
     else:
-        form = UserCreationForm()
+        form = SignupForm()
     return render(request, 'accounts/signup_form.html', {
         "form": form})
 
