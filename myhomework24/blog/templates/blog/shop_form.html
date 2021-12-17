@@ -12,5 +12,9 @@
     </form>
 
     <hr/>
-    <a href="{% url "blog:shop_detail" shop.pk %}">조회화면으로</a>
+    {% if shop %}
+        <a href="{% url "blog:shop_detail" shop.pk %}">조회화면으로</a>
+    {% endif %}
+
+
 {% endblock %}
