@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.db.models import CASCADE
+from django.urls import reverse
 
 
 class TimestampedModel(models.Model):
@@ -48,6 +49,9 @@ class Review(TimestampedModel):
 
     def __str__(self):
         return self.message
+
+    def get_absolute_url(self):
+        return reverse("shop:shop_detail", args=[self.pk])
 
     class Meta:
         ordering = ["-id"]
