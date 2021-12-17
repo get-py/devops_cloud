@@ -21,6 +21,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='root.html'), name='root'),
+    path('accounts/', include('accounts.urls')),
     path('admin/', admin.site.urls),
     path('shop/', include('shop.urls')),
 ]
@@ -29,6 +30,7 @@ urlpatterns += static(settings.MEDIA_URL,
                       document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
+    import debug_toolbar
     urlpatterns += [
-        path('__debug__', include('debug_toolbar.urls'))
+        path('__debug__', include(debug_toolbar.urls))
     ]
