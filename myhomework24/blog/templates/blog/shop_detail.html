@@ -1,0 +1,17 @@
+{% extends "blog/layout.html" %}
+
+{% block content %}
+    <h2>{{ shop.name }}</h2>
+
+    <p>
+        {% for tag in shop.tag_set.all %}
+            {{ tag.name }}
+        {% endfor %}
+    </p>
+
+    {{ shop.discription|linebreaks }}
+
+    <hr/>
+    <a href="{% url "blog:shop_edit" shop.pk %}">수정하기</a>
+
+{% endblock %}
