@@ -26,6 +26,9 @@
             {{ review.message }}
             by {{ review.user }}
             at {{ review.created_at }}
+            {% if review.user == user %}
+                <a href="{% url "shop:review_edit" shop.pk review.pk %}">Edit</a>
+            {% endif %}
         </div>
     {% endfor %}
 
