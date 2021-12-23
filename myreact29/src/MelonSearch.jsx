@@ -2,6 +2,7 @@ import { Input } from 'antd';
 import { useState } from 'react';
 import Axios from 'axios';
 import jsonAdapter from 'axios-jsonp';
+import { List, Avatar } from 'antd';
 
 
 function MelonSearch() {
@@ -15,6 +16,7 @@ function MelonSearch() {
         console.groupEnd();
         setQuery(value);
     };
+
     const handlePressEnter = () => {        
         console.group("handlePressEnter");
         console.log(`검색어 ${query}로 검색합니다.`);
@@ -47,6 +49,8 @@ function MelonSearch() {
         });
     }    
 
+    const data = [{title: ''}];
+
     return <div style={{width:300, margin: '0 auto'}}>
                 <h2>멜론 검색</h2>
                 검색어 : {query}
@@ -56,11 +60,20 @@ function MelonSearch() {
             />
             {songList.map((song) => {
                 return (
-                    <div key={song.SONGID}>
-                        <img src={song.ALBUMIMG} />
-                        {song.SONGNAME} by {song.ARTISTNAME}
-                    </div>
-                );
+                        <List
+                          itemLayout="horizontal"
+                          dataSource={data}
+                          renderItem={item => (
+                            <List.Item>
+                              <List.Item.Meta
+                                avatar={<Avatar src={song.ALBUMIMG} />}
+                                title={song.SONGNAME}
+                                description={song.ARTISTNAME}
+                              />
+                            </List.Item>
+                          )}
+                        />
+                )        
             })}
             </div>;
 }
