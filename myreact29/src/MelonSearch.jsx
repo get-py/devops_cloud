@@ -2,7 +2,7 @@ import { Input } from 'antd';
 import { useState } from 'react';
 import Axios from 'axios';
 import jsonAdapter from 'axios-jsonp';
-import { List, Avatar } from 'antd';
+import { List, Avatar, notification, Typography } from 'antd';
 
 
 function MelonSearch() {
@@ -41,11 +41,24 @@ function MelonSearch() {
             console.groupEnd();
 
             setSongList(serchedSongList || []);
+
+            const type = 'info'
+            notification[type]({
+                message: "멜론 검색",
+                description: `${serchedSongList.length}개의 노래 검색결과가 있습니다`,
+            })
+
+            
         })
         .catch((error) => {
             console.group('멜론 검색 에러');
             console.error(error);
             console.groupEnd();
+
+            notification.error({
+                message: "멜론 검색 error",
+                description: JSON.stringify(error),
+            })
         });
     }    
 
@@ -67,9 +80,16 @@ function MelonSearch() {
                             <List.Item>
                               <List.Item.Meta
                                 avatar={<Avatar src={song.ALBUMIMG} />}
-                                title={song.SONGNAME}
+                                // title={song.SONGNAME}
                                 description={song.ARTISTNAME}
                               />
+                            <Typography.Text 
+                                onClick={() => 
+                                    console.log(`clicked ${JSON.stringify(song)}`)}>
+                                        <a href={`https://www.melon.com/song/detail.htm?songId=${song.SONGID}`}>
+                                            {song.SONGNAME}
+                                        </a>            
+                            </Typography.Text>
                             </List.Item>
                           )}
                         />
