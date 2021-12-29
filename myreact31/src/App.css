@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+.App-nav.others a.on {
+  opacity: 1;
+  filter: saturate(1);
+}

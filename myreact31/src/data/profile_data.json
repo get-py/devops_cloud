@@ -1,0 +1,58 @@
+[
+  {
+    "user": "user1",
+    "profileImage": "/profile-images/member1.jpg",
+    "name": "Yerin Park",
+    "role": "CEO",
+    "facebook_url": "www.facebook.com/yerinpark",
+    "email": "yerinpark@yr.com"
+  },
+  {
+    "user": "user2",
+    "profileImage": "/profile-images/member2.jpg",
+    "name": "Bori Cha",
+    "role": "Project Manager",
+    "facebook_url": "www.facebook.com/boricha",
+    "email": "boricha@yr.com"
+  },
+  {
+    "user": "user3",
+    "profileImage": "/profile-images/member3.jpg",
+    "name": "Mara Tang",
+    "role": "Finance Manager",
+    "facebook_url": "www.facebook.com/maratang",
+    "email": "maratang@yr.com"
+  },
+  {
+    "user": "user4",
+    "profileImage": "/profile-images/member4.jpg",
+    "name": "Marry",
+    "role": "Mascot",
+    "facebook_url": "www.facebook.com/Marry",
+    "email": "Marry@yr.com"
+  },
+  {
+    "user": "user5",
+    "profileImage": "/profile-images/member1.jpg",
+    "name": "버블티",
+    "role": "Mascot",
+    "facebook_url": "www.facebook.com/Marry",
+    "email": "Marry@yr.com"
+  },
+  {
+    "user": "user6",
+    "profileImage": "/profile-images/member1.jpg",
+    "name": "리액트",
+    "role": "Mascot",
+    "facebook_url": "www.facebook.com/Marry",
+    "email": "Marry@yr.com"
+  },
+  {
+    "user": "user7",
+    "profileImage": "/profile-images/member1.jpg",
+    "name": "커피",
+    "role": "Mascot",
+    "facebook_url": "www.facebook.com/Marry",
+    "email": "Marry@yr.com"
+  }
+]
