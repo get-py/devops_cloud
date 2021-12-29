@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import PageAbout from "./pages/PageAbout";
+import PageCounter from "./pages/PageCounter"
+import TopNav from "./components/TopNav";
+import { useState } from "react";
 
-function App() {
+function App({initial}) {
+  const [pageName, setPageName] = useState("about");
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+      <h1>박예린의 리액트</h1>
+      <TopNav changePageName={setPageName} />
+      {pageName === "about" && <PageAbout />}
+      {pageName === "counter" && <PageCounter />}
+    </div>    
   );
 }
+
 
 export default App;
