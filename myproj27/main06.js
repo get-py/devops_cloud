@@ -10,7 +10,6 @@ const { melon_data: song_array } = require("./melon");
 // console.log(title);
 
 
-
 for (const song of song_array) {
     let title = song.title
     var count = 1;

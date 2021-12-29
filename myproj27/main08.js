@@ -3,15 +3,28 @@ const { melon_data: song_array } = require("./melon");
 // Array의 filter와 map 활용
 // 출력포맷 : [곡명1, 곡명2, 곡명3]
 
-const song_title = song_array.map(song => song.title);
+
+song_array
+    .filter(
+        ({ title }) => title.includes("사랑")
+    )
+    .map(
+        ({ title }) => title);
+
+console.log(song_array);
 
 
-const love_song = []
+//////////////////////////
 
-for (const song of song_title) {
-    if (song.indexOf("사랑") > -1) {
-        love_song.push(song)
-    }
-}
+// const song_title = song_array.map(song => song.title);
 
-console.log(love_song);
+
+// const love_song = []
+
+// for (const song of song_title) {
+//     if (song.indexOf("사랑") > -1) {
+//         love_song.push(song)
+//     }
+// }
+
+// console.log(love_song);
