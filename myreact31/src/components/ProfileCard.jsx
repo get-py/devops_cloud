@@ -8,13 +8,15 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons'
 
 function ProfileCard({
     member,
-	profileImage,
+	profile_image_url,
 	name,
 	role,
 	facebook_url,
 	email,
     changeUserPage,
     children,
+    mbti,
+    instagram_url,
 }) {
 	return (
         
@@ -26,10 +28,12 @@ function ProfileCard({
                     <a href="#"><FontAwesomeIcon icon={faStickyNote} /></a>
                 </nav>
                 <article className="profile">
-                    <img src={profileImage} alt="프로필 이미지" />
+                    <img src={profile_image_url} alt="프로필 이미지" />
 
                     <h1>{name}</h1>
                     <h2>{role}</h2>
+                    <h2>{mbti}</h2>
+                    
 
                     <a href="#" className="btnView">VIEW MORE</a>
                 </article>
@@ -37,7 +41,7 @@ function ProfileCard({
                     <li>
                         <FontAwesomeIcon icon={faFacebook} />
                         <span>
-                            <a href={facebook_url}>Visit My Facebook Page</a>
+                            <a href={instagram_url}>Visit My Instagram</a>
                         </span>
                     </li>
                     <li>

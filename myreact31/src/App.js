@@ -1,35 +1,37 @@
-import PageLotto from "./components/PageLotto";
-import ProfileCard from "./components/ProfileCard";
-import TopNav from "./components/TopNav";
-import profileList from "./data/profile_data.json";
 import { useEffect, useState } from "react";
+import Axios from "axios";
+import ProfileCard from "./components/ProfileCard.jsx";
 
 function App() {
-  const [userNum, setUserNum] = useState(profileList[0].name);
+  const [profile, setProfile] = useState("진");
+  const [dataList, setDataList] = useState([]);
 
+  useEffect(() => {
+    Axios.get(
+      "https://classdevopscloud.blob.core.windows.net/data/profile-list.json"
+    )
+      .then((response) => {
+        // reponse는 axios 객체
+        // response.data => 응답 내용
+        setDataList(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
   return (
     <>
-      <useEffect />
-
-      <hr />
-      {profileList.map((user, index) => {
-        if (userNum === user.name) {
+      {dataList.map((user, index) => {
+        if (profile === user.name) {
           return (
             <div className={`member${index % 4}`}>
-              <ProfileCard
-                profileImage={user.profileImage}
-                name={user.name}
-                facebook_url={user.facebook_url}
-                email={user.email}
-                changeUserPage={setUserNum}
-                member={user.user}
-              >
+              <ProfileCard {...user} changeUserPage={setProfile}>
                 <nav>
-                  {profileList.map((user) => {
+                  {dataList.map((user) => {
                     return (
                       <a
-                        onClick={() => setUserNum(user.name)}
-                        className={user.name === user ? "on" : ""}
+                        onClick={() => setProfile(user.name)}
+                        className={user.name === profile ? "on" : ""}
                       ></a>
                     );
                   })}
