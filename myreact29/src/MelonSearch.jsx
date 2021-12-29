@@ -32,7 +32,7 @@ function MelonSearch() {
                 query: query,
             }
         }).then((response) => {
-            const { data: {SONGCONTENTS: serchedSongList }, 
+            const { data: {SONGCONTENTS: serchedSongList=[]}, 
             } = response;
             
 
@@ -40,7 +40,7 @@ function MelonSearch() {
             console.log(serchedSongList);
             console.groupEnd();
 
-            setSongList(serchedSongList || []);
+            setSongList(serchedSongList);
 
             const type = 'info'
             notification[type]({
@@ -73,7 +73,7 @@ function MelonSearch() {
             />
             {songList.map((song) => {
                 return (
-                        <List
+                        <List key={song.SONGID}
                           itemLayout="horizontal"
                           dataSource={data}
                           renderItem={item => (
