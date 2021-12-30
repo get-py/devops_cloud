@@ -1,5 +1,7 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
+import 'pages/PageProfile.jsx';
+import ProfileList from 'components/ProfileList';
 
 function PageProfile() {
   //   const [profile, setProfile] = useState();
@@ -58,29 +60,15 @@ function PageProfile() {
       <button onClick={handleRefresh}>새로고침</button>
       {profileList.length === 0 && <h4>등록된 프로필이 없습니다</h4>}
       {error && <h4>잠시 후에 다시 시도해주십시오</h4>}
-      {profileList
-        .filter((user) => {
+      <ProfileList
+        profileList={profileList.filter((user) => {
           return (
             user.name.includes(query) ||
             user.role.includes(query) ||
             user.mbti.includes(query)
           );
-        })
-        .map((user) => {
-          return (
-            <>
-              <h3>{user.name}</h3>
-              <img src={user.profile_image_url} alt="" />
-              <ul>
-                <li>{user.role}</li>
-                <li>{user.mbti}</li>
-                <li>
-                  <a href={user.instagram_url}>instagram</a>
-                </li>
-              </ul>
-            </>
-          );
         })}
+      />
     </div>
   );
 }
