@@ -1,0 +1,1 @@
+import 'compoment/ProfileCard.jsx';
