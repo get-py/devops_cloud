@@ -1,53 +1,48 @@
 import { useState } from "react/cjs/react.development";
 
 function Counter() {
-  const [value, setValue] = useState(0);
-  const [color, setColor] = useState("red");
-
-  // const HandlePlus = () => {
-  //   setValue(value + 1);
-  // };
-
-  // const HandleMinus = () => {
-  //   setValue(value - 1);
-  // };
-
-  // const HandleGreen = () => {
-  //   setColor("green");
-  // };
-
-  // const HandleBlue = () => {
-  //   setColor("blue");
-  // };
-
-  // const HandleRed = () => {
-  //   setColor("red");
-  // };
+  const [state, setState] = useState({ value: 0, color: "red" });
+  // const [value, setValue] = useState(0);
+  // const [color, setColor] = useState("red");
 
   const HandlePlus = () => {
-    setValue((prevValue) => prevValue + 1);
+    setState((prevState) => ({
+      ...prevState,
+      value: prevState.value + 1,
+    }));
   };
-
   const HandleMinus = () => {
-    setValue((prevValue) => prevValue - 1);
+    setState({
+      ...state,
+      value: state.value - 1,
+    });
   };
-
   const HandleGreen = () => {
-    setColor((prevColor) => "green");
+    setState({
+      ...state,
+      color: "green",
+    });
   };
-
   const HandleBlue = () => {
-    setColor((prevColor) => "blue");
+    setState({
+      ...state,
+      color: "blue",
+    });
   };
-
   const HandleRed = () => {
-    setColor((prevColor) => "red");
+    setState({
+      ...state,
+      color: "red",
+    });
   };
 
   return (
     <div>
       <h2>Counter</h2>
-      <div style={{ ...defaultStyle, backgroundColor: color }}>{value}</div>
+
+      <div style={{ ...defaultStyle, backgroundColor: state.color }}>
+        {state.value}
+      </div>
       <button onClick={HandlePlus}>+</button>
       <button onClick={HandleMinus}>-</button>
       <button onClick={HandleGreen}>Green</button>
