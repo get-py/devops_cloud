@@ -1,40 +1,64 @@
-import { useState } from "react/cjs/react.development";
+import { useState, useReducer } from "react/cjs/react.development";
+
+function reducer(prevState, action) {
+  const { type, amount, color } = action;
+
+  if (type === "PLUS") {
+    return { ...prevState, value: prevState.value + amount };
+  } else if (type === "MINUS") {
+    return { ...prevState, value: prevState.value - amount };
+  } else if (type === "CHANGE_COLOR") {
+    return { ...prevState, color: color };
+  }
+}
 
 function Counter() {
-  const [state, setState] = useState({ value: 0, color: "red" });
-  // const [value, setValue] = useState(0);
-  // const [color, setColor] = useState("red");
+  const [state, dispatch] = useReducer(reducer, { value: 0, color: "red" });
 
-  const HandlePlus = () => {
-    setState((prevState) => ({
-      ...prevState,
-      value: prevState.value + 1,
-    }));
+  const handlePlus = () => {
+    return dispatch({ type: "PLUS", amount: 1 });
   };
-  const HandleMinus = () => {
-    setState({
-      ...state,
-      value: state.value - 1,
-    });
+
+  const handleMinus = () => {
+    return dispatch({ type: "MINUS", amount: 1 });
   };
-  const HandleGreen = () => {
-    setState({
-      ...state,
-      color: "green",
-    });
+
+  const handleGreen = () => {
+    return dispatch({ type: "CHANGE_COLOR", color: "green" });
   };
-  const HandleBlue = () => {
-    setState({
-      ...state,
-      color: "blue",
-    });
+
+  const handleBlue = () => {
+    return dispatch({ type: "CHANGE_COLOR", color: "blue" });
   };
-  const HandleRed = () => {
-    setState({
-      ...state,
-      color: "red",
-    });
+
+  const handleRed = () => {
+    return dispatch({ type: "CHANGE_COLOR", color: "red" });
   };
+
+  // const handleMinus = () => {
+  //   const action = { type: "MINUS", amount: 1 };
+  //   setState((prevState) => {
+  //     return dispatch(action, prevState);
+  //   });
+  // };
+  // const handleGreen = () => {
+  //   const action = { type: "CHANGE_COLOR", color: "green" };
+  //   setState((prevState) => {
+  //     return reducer(action, prevState);
+  //   });
+  // };
+  // const handleBlue = () => {
+  //   const action = { type: "CHANGE_COLOR", color: "blue" };
+  //   setState((prevState) => {
+  //     return reducer(action, prevState);
+  //   });
+  // };
+  // const handleRed = () => {
+  //   const action = { type: "CHANGE_COLOR", color: "red" };
+  //   setState((prevState) => {
+  //     return reducer(action, prevState);
+  //   });
+  // };
 
   return (
     <div>
@@ -43,11 +67,11 @@ function Counter() {
       <div style={{ ...defaultStyle, backgroundColor: state.color }}>
         {state.value}
       </div>
-      <button onClick={HandlePlus}>+</button>
-      <button onClick={HandleMinus}>-</button>
-      <button onClick={HandleGreen}>Green</button>
-      <button onClick={HandleBlue}>Blue</button>
-      <button onClick={HandleRed}>Red</button>
+      <button onClick={handlePlus}>+</button>
+      <button onClick={handleMinus}>-</button>
+      <button onClick={handleGreen}>Green</button>
+      <button onClick={handleBlue}>Blue</button>
+      <button onClick={handleRed}>Red</button>
     </div>
   );
 }
