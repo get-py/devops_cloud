@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Counter2 from "./Counter2";
+import Counter from "./Counter";
 
 function App() {
-  return <Counter2 initialValue={10} />;
+  return <Counter initialValue={10} />;
 }
 
 export default App;

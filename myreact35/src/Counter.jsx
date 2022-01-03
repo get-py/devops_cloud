@@ -1,35 +1,71 @@
-import { useState } from "react";
+import { useState } from "react/cjs/react.development";
 
-function Counter({ initialValue }) {
-  // 상탯값 정의
-  const [value, setValue] = useState(initialValue);
+function Counter() {
+  const [value, setValue] = useState(0);
+  const [color, setColor] = useState("red");
 
-  // 상탯값 변경하는 함수들
-  const handleClick = () => {
-    // setValue(value + 1); // 비동기 세상
-    // setValue(value + 2);
+  // const HandlePlus = () => {
+  //   setValue(value + 1);
+  // };
 
-    setValue((prevValue) => prevValue + 1);
-    setValue((prevValue) => prevValue + 1);
+  // const HandleMinus = () => {
+  //   setValue(value - 1);
+  // };
+
+  // const HandleGreen = () => {
+  //   setColor("green");
+  // };
+
+  // const HandleBlue = () => {
+  //   setColor("blue");
+  // };
+
+  // const HandleRed = () => {
+  //   setColor("red");
+  // };
+
+  const HandlePlus = () => {
     setValue((prevValue) => prevValue + 1);
   };
 
-  const handleClick2 = () => {
-    setValue((prevValue) => {
-      return prevValue - 1;
-    });
+  const HandleMinus = () => {
+    setValue((prevValue) => prevValue - 1);
   };
 
-  // 보여지는 것들을 정의
+  const HandleGreen = () => {
+    setColor((prevColor) => "green");
+  };
+
+  const HandleBlue = () => {
+    setColor((prevColor) => "blue");
+  };
+
+  const HandleRed = () => {
+    setColor((prevColor) => "red");
+  };
+
   return (
     <div>
       <h2>Counter</h2>
-      {value}
-      <hr />
-      <button onClick={handleClick}>plus</button>
-      <button onClick={handleClick2}>minus</button>
+      <div style={{ ...defaultStyle, backgroundColor: color }}>{value}</div>
+      <button onClick={HandlePlus}>+</button>
+      <button onClick={HandleMinus}>-</button>
+      <button onClick={HandleGreen}>Green</button>
+      <button onClick={HandleBlue}>Blue</button>
+      <button onClick={HandleRed}>Red</button>
     </div>
   );
 }
+
+const defaultStyle = {
+  width: "100px",
+  height: "100px",
+  borderRadius: "50px",
+  lineHeight: "100px",
+  textAlign: "center",
+  display: "inline-block",
+  fontSize: "3rem",
+  userSelect: "none",
+};
 
 export default Counter;
