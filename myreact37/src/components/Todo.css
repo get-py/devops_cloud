@@ -1,0 +1,6 @@
+.todo {
+  background-color: lavender;
+}
+.todo:hover {
+  background-color: lightpink;
+}
