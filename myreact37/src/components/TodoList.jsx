@@ -4,13 +4,13 @@ import Todo from './Todo';
 import TodoForm from './TodoForm';
 import './TodoList.css';
 
-const INITIAL_STATE = [{ content: '2022년에는 살 빼기' }];
+const INITIAL_STATE = [{ content: '2022년에는 살 빼기', color: 'red' }];
 
 function TodoList() {
   const [todoList, setTodoList] = useState(INITIAL_STATE);
   const [fieldValues, handleChange, clearFiledValues] = useFieldValues({
     content: '',
-    color: 'Orange',
+    color: 'cyan',
   });
 
   const removeTodo = (todoIndex) => {
@@ -19,33 +19,29 @@ function TodoList() {
     );
   };
 
-  // const changedInputText = (e) => {
-  //   setInputText(e.target.value);
-  // };
+  const appendTodo = () => {
+    console.log('새로운 todo 저장');
 
-  // const appendInputText = (e) => {
-  //   console.log('e.key :', e.key);
-  //   if (e.key === 'Enter') {
-  //     // todoList 배열 끝에 inputText를 추가합니다.
-  //     // inputText를 다시 비웁니다.
-  //     console.log('inputText :', inputText);
+    const todo = { ...fieldValues };
 
-  //     // setTodoList 에 함수를 넘기는 것.
-  //     // todoList 상탯값을 직접 변경하는 것은 아닙니다. (배열의 push를 사용 X)
+    // setter에 값 지정 방식
+    // setTodoList([...todoList, todo]);
 
-  //     setTodoList((prevTodoList) => {
-  //       return [...prevTodoList, { content: inputText }];
-  //     });
+    // setter 에 함수 지정방식
+    setTodoList((prevTodoList) => [...prevTodoList, todo]);
 
-  //     setInputText('');
-  //   }
-  // };
+    clearFiledValues();
+  };
 
   return (
     <div className="todo-list">
       <h2>Todo List</h2>
 
-      <TodoForm handleChange={handleChange} fieldValues={fieldValues} />
+      <TodoForm
+        handleChange={handleChange}
+        fieldValues={fieldValues}
+        handleSubmit={appendTodo}
+      />
       <hr />
       {JSON.stringify(fieldValues)}
 
